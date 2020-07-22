@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Catch me if you can</title>
+ <style>
+#box{
+	height:100px;
+	width:100px;
+	background-color:blue;
+	border-radius: 50%;
+	box-shadow: 6px 7px 12px 0px black;
+	position:absolute;
+}
+p{
+	text-align: center;
+	color:white;
+	position: relative;
+	top:30%;
+}
+
+ </style>   
+ </head>
+ <body>
+     <div id="box">
+     	<p>Catch Me</p>
+</div>
+<script>
+
+var box = document.getElementById("box");
+
+var viewWidth = window.innerWidth;
+var viewHeight = window.innerHeight;
+window.addEventListener("resize", function(event) {
+    viewWidth = window.innerWidth;
+    viewHeight = window.innerHeight;
+});
+
+box.addEventListener("mouseover", function(event) {
+    var boxAttr = box.getBoundingClientRect();
+    
+    var pos = getNewPosition(boxAttr.width, boxAttr.height);
+    
+    box.style.top = pos.y + "px";
+    box.style.left = pos.x + "px";
+});
+
+
+
+function getNewPosition(boxWidth, boxHeight) {
+    
+    var newX = Math.floor((Math.random() * viewWidth) + 1 - boxWidth);
+    var newY = Math.floor((Math.random() * viewHeight) + 1 - boxHeight);
+
+
+    if(newX < 0) {
+        newX = 0;
+    }
+    if(newY < 0) {
+        newY = 0;
+    }
+    
+    return {x: newX, y: newY};
+}
+</script>
+ </body>
+</html>
